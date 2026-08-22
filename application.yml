@@ -50,7 +50,7 @@ plugins:
     allowDirectPlaylistIds: true
     clients:
       - MUSIC
-      - ANDROID_VR
+      - WEB_REMIX
       - WEB
       - TVHTML5
 

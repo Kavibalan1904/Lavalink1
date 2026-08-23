@@ -50,9 +50,12 @@ plugins:
     allowDirectPlaylistIds: true
     clients:
       - MUSIC
-      - WEB_REMIX
-      - WEB
-      - TVHTML5
+      - ANDROID_LITE
+      - MEDIA_CONNECT
+      - IOS
+      - TVHTML5EMBEDDED
+    oauth:
+      enabled: true
 
 logging:
   level:

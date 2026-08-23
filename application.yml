@@ -50,10 +50,9 @@ plugins:
     allowDirectPlaylistIds: true
     clients:
       - MUSIC
-      - ANDROID_LITE
-      - MEDIA_CONNECT
+      - ANDROID_VR
+      - WEBEMBEDDED
       - IOS
-      - TVHTML5EMBEDDED
     oauth:
       enabled: true
 

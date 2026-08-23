@@ -53,6 +53,7 @@ plugins:
       - ANDROID_VR
       - WEBEMBEDDED
       - IOS
+      - WEB
     oauth:
       enabled: true
       refreshToken: "${YT_OAUTH_REFRESH_TOKEN}"

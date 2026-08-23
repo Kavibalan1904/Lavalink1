@@ -50,13 +50,12 @@ plugins:
     allowDirectPlaylistIds: true
     clients:
       - MUSIC
-      - ANDROID_VR
-      - WEBEMBEDDED
-      - IOS
       - WEB
+      - TVHTML5EMBEDDED
+      - ANDROID_TESTSUITE
+      - ANDROID_VR
     oauth:
-      enabled: true
-      refreshToken: "${YT_OAUTH_REFRESH_TOKEN}"
+      enabled: false
 
 logging:
   level:

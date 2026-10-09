@@ -36,7 +36,7 @@ lavalink:
     frameBufferDurationMs: 4000 # 4s frame buffer (smooth audio without memory overhead)
     opusEncodingQuality: 7 # Balanced quality & CPU for Render free plan
     resamplingQuality: LOW # Minimizes CPU spikes and GC pressure on free tier 0.1 vCPU
-    trackStuckThresholdMs: 8000 # Fast 8s recovery for unresponsive audio tracks
+    trackStuckThresholdMs: 20000 # Relaxed to 20s to allow Render free tier to buffer without killing the track
     useSeekGhosting: true
     youtubePlaylistLoadLimit: 100 # Prevents memory exhaustion on giant playlist queries
     playerUpdateInterval: 5 # 5s server sync (Resobott tracks player position smoothly on client)

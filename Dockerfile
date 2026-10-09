@@ -8,7 +8,7 @@ FROM eclipse-temurin:21-jre-alpine
 # Set environment defaults
 ENV PORT=2333 \
     LAVALINK_PASSWORD=youshallnotpass \
-    JAVA_OPTS="-Xms96m -Xmx320m -XX:MaxMetaspaceSize=96m -Xss256k -XX:+UseSerialGC -XX:+ExitOnOutOfMemoryError -Djdk.tls.client.protocols=TLSv1.2,TLSv1.3 -Dfile.encoding=UTF-8"
+    JAVA_OPTS="-Xms96m -Xmx320m -XX:MaxMetaspaceSize=96m -Xss256k -XX:+UseSerialGC -XX:+ExitOnOutOfMemoryError -Djdk.tls.client.protocols=TLSv1.2,TLSv1.3 -Dfile.encoding=UTF-8 -Djava.net.preferIPv4Stack=true"
 
 # Install curl, dumb-init, bash, and native C runtime libraries for JNI (libudpqueue)
 RUN apk add --no-cache curl bash dumb-init libgcc libstdc++ gcompat

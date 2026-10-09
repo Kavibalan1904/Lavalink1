@@ -51,6 +51,8 @@ plugins:
     allowDirectPlaylistIds: true
     clients:
       - MUSIC
+      - ANDROID_TESTSUITE
+      - TVHTML5EMBEDDED
       - ANDROID_VR
       - WEB
       - WEBEMBEDDED
@@ -60,9 +62,9 @@ plugins:
       token: "${YOUTUBE_PO_TOKEN:}"
       visitorData: "${YOUTUBE_VISITOR_DATA:}"
     oauth:
-      enabled: false
+      enabled: true
       refreshToken: "${YOUTUBE_OAUTH_REFRESH_TOKEN:}"
-      skipInitialization: true
+      skipInitialization: ${YOUTUBE_OAUTH_SKIP_INIT:false}
 
   lavasrc:
     providers:

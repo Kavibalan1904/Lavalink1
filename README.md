@@ -117,9 +117,29 @@ LavaSrc resolves Spotify tracks, playlists, and albums and mirrors them to high-
   2. Create an application and copy your **Client ID** and **Client Secret**.
   3. Add `SPOTIFY_CLIENT_ID` and `SPOTIFY_CLIENT_SECRET` to your Render Environment Variables.
 
-### 2. YouTube & Anti-Bot Protection
-The `dev.lavalink.youtube` plugin handles YouTube playback.
-- If cloud datacenter IP blocks occur, you can supply a Proof-of-Origin token (`poToken`):
+### 2. YouTube & Anti-Bot Protection (Fixing "This video requires login")
+The `dev.lavalink.youtube` plugin handles YouTube playback. YouTube regularly challenges cloud datacenter IPs (like Render) with "Sign in to confirm you're not a bot" or "This video requires login".
+
+#### Option A: YouTube OAuth Flow (Recommended)
+1. In `application.yml`, OAuth is enabled by default (`oauth.enabled: true`).
+2. Deploy or restart your Lavalink service on Render.
+3. Open the **Logs** tab in your Render Dashboard.
+4. You will see a log message prompting:
+   ```
+   Go to https://www.google.com/device and enter code XXXX-XXXX
+   ```
+5. Open `https://www.google.com/device` in your browser, enter the code, and sign in with a **burner / secondary Google account** (do not use your primary personal account).
+6. Once approved, the Render logs will print your `refreshToken`:
+   ```
+   OAuth refresh token: <YOUR_TOKEN>
+   ```
+7. Copy this token and go to Render Dashboard -> **Environment Variables** -> add:
+   - `YOUTUBE_OAUTH_REFRESH_TOKEN` = `<YOUR_TOKEN>`
+   - `YOUTUBE_OAUTH_SKIP_INIT` = `true`
+8. Save changes and redeploy. All YouTube tracks will now play seamlessly without login errors!
+
+#### Option B: Proof of Origin Token (`poToken`)
+- Alternatively, you can supply a Proof-of-Origin token:
   1. Generate tokens using [youtube-trusted-session-generator](https://github.com/iv-org/youtube-trusted-session-generator).
   2. Add `YOUTUBE_PO_TOKEN` and `YOUTUBE_VISITOR_DATA` in your Render Environment Variables.
 

@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: lavalink1
+    runtime: docker
+    plan: free
+    dockerfilePath: Dockerfile
+    autoDeploy: true
+    healthCheckPath: /version
+    envVars:
+      - key: LAVALINK_PASSWORD
+        value: youshallnotpass
+      - key: JAVA_OPTS
+        value: "-Xms96m -Xmx320m -XX:MaxMetaspaceSize=96m -Xss256k -XX:+UseSerialGC -XX:+ExitOnOutOfMemoryError -Djdk.tls.client.protocols=TLSv1.2,TLSv1.3 -Dfile.encoding=UTF-8"
+      - key: SPOTIFY_CLIENT_ID
+        sync: false
+      - key: SPOTIFY_CLIENT_SECRET
+        sync: false
+      - key: SPOTIFY_COUNTRY_CODE
+        value: US
+      - key: YOUTUBE_PO_TOKEN
+        sync: false
+      - key: YOUTUBE_VISITOR_DATA
+        sync: false

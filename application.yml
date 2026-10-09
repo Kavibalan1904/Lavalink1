@@ -53,10 +53,6 @@ plugins:
       - MUSIC
       - ANDROID_TESTSUITE
       - TVHTML5EMBEDDED
-      - ANDROID_VR
-      - WEB
-      - WEBEMBEDDED
-      - MWEB
       - TV
     pot:
       token: "${YOUTUBE_PO_TOKEN:}"

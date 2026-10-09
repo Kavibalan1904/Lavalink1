@@ -9,7 +9,7 @@ lavalink:
       snapshot: false
 
   server:
-    password: ${LAVALINK_SERVER_PASSWORD}
+    password: ${LAVALINK_PASSWORD}
 
     sources:
       youtube: false

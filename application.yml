@@ -1,29 +1,48 @@
-
 server:
+  port: ${PORT:2333}
   address: 0.0.0.0
-  port: ${PORT:10000}
+  http2:
+    enabled: true
 
 lavalink:
   plugins:
     - dependency: "dev.lavalink.youtube:youtube-plugin:1.18.2"
       snapshot: false
-
+    - dependency: "com.github.topi314.lavasrc:lavasrc-plugin:4.8.3"
+      snapshot: false
+  pluginsDir: "./plugins"
   server:
-    password: ${LAVALINK_PASSWORD}
-
+    password: "${LAVALINK_PASSWORD:youshallnotpass}"
     sources:
-      youtube: false
-      soundcloud: true
+      youtube: false # Disabled in favor of the dev.lavalink.youtube plugin
       bandcamp: true
+      soundcloud: true
       twitch: true
       vimeo: true
-      nico: true
       http: true
       local: false
-
-    bufferDurationMs: 400
-    frameBufferDurationMs: 5000
-    opusEncodingQuality: 10
+    filters: # Fully compatible with Resobott filter commands (bassboost, nightcore, 8d, etc.)
+      volume: true
+      equalizer: true
+      karaoke: true
+      timescale: true
+      tremolo: true
+      vibrato: true
+      distortion: true
+      rotation: true
+      channelMix: true
+      lowPass: true
+    gc-warnings: true # Enable garbage collection warning logs
+    bufferDurationMs: 800 # 800ms network buffer (reduced from 1000ms as requested)
+    frameBufferDurationMs: 4000 # 4s frame buffer (smooth audio without memory overhead)
+    opusEncodingQuality: 7 # Balanced quality & CPU for Render free plan
+    resamplingQuality: LOW # Minimizes CPU spikes and GC pressure on free tier 0.1 vCPU
+    trackStuckThresholdMs: 20000 # Relaxed to 20s to allow Render free tier to buffer without killing the track
+    useSeekGhosting: true
+    youtubePlaylistLoadLimit: 100 # Prevents memory exhaustion on giant playlist queries
+    playerUpdateInterval: 5 # 5s server sync (Resobott tracks player position smoothly on client)
+    youtubeSearchEnabled: true
+    soundcloudSearchEnabled: true
 
 plugins:
   youtube:
@@ -31,23 +50,58 @@ plugins:
     allowSearch: true
     allowDirectVideoIds: true
     allowDirectPlaylistIds: true
-
     clients:
+      - MUSIC
+      - ANDROID_TESTSUITE
+      - TVHTML5EMBEDDED
       - ANDROID_VR
       - WEB
-      - MWEB
       - WEBEMBEDDED
-      - ANDROID_MUSIC
-      - IOS
+      - MWEB
+      - TV
+    pot:
+      token: "${YOUTUBE_PO_TOKEN:}"
+      visitorData: "${YOUTUBE_VISITOR_DATA:}"
+    oauth:
+      enabled: true
+      refreshToken: "${YOUTUBE_OAUTH_REFRESH_TOKEN:}"
+      skipInitialization: ${YOUTUBE_OAUTH_SKIP_INIT:false}
+
+  lavasrc:
+    providers:
+      - "ytsearch:\"%ISRC%\""
+      - "ytsearch:%QUERY%"
+    sources:
+      spotify: true
+      applemusic: false
+      deezer: false
+      yandexmusic: false
+      flowerytts: false
+      youtube: true
+    spotify:
+      clientId: "${SPOTIFY_CLIENT_ID:}"
+      clientSecret: "${SPOTIFY_CLIENT_SECRET:}"
+      spDc: "${SPOTIFY_SP_DC:}"
+      countryCode: "${SPOTIFY_COUNTRY_CODE:US}"
+      playlistLoadLimit: 100
+      albumLoadLimit: 50
+      resolveArtistsInSearch: true
+    applemusic:
+      countryCode: "US"
+      mediaAPIToken: "${APPLE_MUSIC_API_TOKEN:}"
+      playlistLoadLimit: 100
+      albumLoadLimit: 50
+    deezer:
+      masterDecryptionKey: "${DEEZER_MASTER_KEY:}"
+      arl: "${DEEZER_ARL:}"
 
 logging:
+  file:
+    path: ./logs/lavalink.log
+    max-history: 3
+    max-size: 10MB
   level:
     root: INFO
     lavalink: INFO
-
-  request:
-    enabled: true
-    includeClientInfo: false
-    includeHeaders: false
-    includeQueryString: false
-    includePayload: false
+    dev.lavalink.youtube: INFO
+    com.github.topi314.lavasrc: INFO

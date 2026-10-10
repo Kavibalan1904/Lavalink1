@@ -8,7 +8,7 @@ lavalink:
       repository: "https://maven.lavalink.dev/releases"
 
   server:
-    password: "${LAVALINK_PASSWORD}"
+    password: "${LAVALINK_PASSWORD:youshallnotpass}"
 
     sources:
       youtube: false

@@ -92,7 +92,7 @@ logging:
     dev.lavalink.youtube.clients.skeleton.NonMusicClient: INFO
     root: INFO
     lavalink: INFO
-    dev.lavalink.youtube: DEBUG
+    dev.lavalink.youtube: INFO
     dev.lavalink.youtube.http.YoutubeOauth2Handler: INFO
 
   request:

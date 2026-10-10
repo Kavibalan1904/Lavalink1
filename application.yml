@@ -32,14 +32,14 @@ plugins:
     allowDirectVideoIds: true
     allowDirectPlaylistIds: true
 
-    # Prefer playback-capable clients that do not require OAuth sign-in first.
-    # TV requires sign-in; keep it last so it cannot block healthier client attempts.
-    # MUSIC is for YouTube Music search and does not provide normal playback.
+    # OAuth is configured, so try the OAuth-capable TV playback client first.
+    # WEB and the other playback clients remain fallbacks if TV cannot load a track.
+    # MUSIC supports YouTube Music search only; it is not a playback client.
     clients:
+      - TV
       - WEB
       - ANDROID_VR
       - WEBEMBEDDED
-      - TV
       - MUSIC
 
     remoteCipher:

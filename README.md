@@ -112,7 +112,7 @@ To keep your Lavalink server warm and responsive 24/7 without paying:
 
 ### 1. Spotify
 LavaSrc resolves Spotify tracks, playlists, and albums and mirrors them to high-fidelity audio streams.
-- Although public Spotify scraping works out of the box, setting your own free Spotify API credentials avoids rate-limiting:
+- Spotify search requires valid API credentials in this configuration:
   1. Go to [Spotify Developer Dashboard](https://developer.spotify.com/dashboard).
   2. Create an application and copy your **Client ID** and **Client Secret**.
   3. Add `SPOTIFY_CLIENT_ID` and `SPOTIFY_CLIENT_SECRET` to your Render Environment Variables.
@@ -136,7 +136,7 @@ The `dev.lavalink.youtube` plugin handles YouTube playback. YouTube regularly ch
 7. Copy this token and go to Render Dashboard -> **Environment Variables** -> add:
    - `YOUTUBE_OAUTH_REFRESH_TOKEN` = `<YOUR_TOKEN>`
    - `YOUTUBE_OAUTH_SKIP_INIT` = `true`
-8. Save changes and redeploy. All YouTube tracks will now play seamlessly without login errors!
+8. Save changes and redeploy. This can reduce login-related playback failures, but YouTube may still block specific tracks or cloud-hosted IPs.
 
 #### Option B: Proof of Origin Token (`poToken`)
 - Alternatively, you can supply a Proof-of-Origin token:

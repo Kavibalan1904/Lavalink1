@@ -20,8 +20,7 @@ A high-performance, containerized **Lavalink v4** audio node specially tuned for
   - Full filter pipeline enabled: Equalizer, Bassboost, Timescale (Speed/Pitch/Nightcore), Volume, 8D / Rotation, Vibrato, Tremolo, Distortion, and Channel Mix matching all Resobott `/filter` commands.
 - **🌐 Dynamic `$PORT` Binding**:
   - Automatic detection and binding to Render's dynamically assigned `$PORT` on `0.0.0.0`.
-- **🔐 Bot-Matched Credentials**:
-  - Configured with password `youshallnotpass` (overridable via `LAVALINK_PASSWORD`), directly aligning with Resobott's primary node defaults.
+- **🔐 Private Credentials**: Requires `LAVALINK_PASSWORD` to be set in Render and Resobott. Do not use a public example password.
 
 ---
 
@@ -54,7 +53,7 @@ A high-performance, containerized **Lavalink v4** audio node specially tuned for
 5. Under **Environment Variables**, add the following (optional if using defaults):
    | Key | Default Value | Description |
    |---|---|---|
-   | `LAVALINK_PASSWORD` | `youshallnotpass` | Password for your bot to authenticate |
+   | `LAVALINK_PASSWORD` | *Set securely in Render* | Required private password; use the same value in Resobott |
    | `JAVA_OPTS` | `-Xms96m -Xmx320m -XX:MaxMetaspaceSize=96m -Xss256k -XX:+UseSerialGC -XX:+ExitOnOutOfMemoryError -Djdk.tls.client.protocols=TLSv1.2,TLSv1.3 -Dfile.encoding=UTF-8` | Low-RAM JVM arguments |
    | `SPOTIFY_CLIENT_ID` | *(Optional)* | Your Spotify Developer App Client ID |
    | `SPOTIFY_CLIENT_SECRET` | *(Optional)* | Your Spotify Developer App Client Secret |

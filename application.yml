@@ -3,6 +3,10 @@ server:
   port: ${PORT:2333}
 
 lavalink:
+  plugins:
+    - dependency: "com.github.topi314.lavasrc:lavasrc-plugin:4.8.3"
+      repository: "https://maven.lavalink.dev/releases"
+
   server:
     password: "${LAVALINK_PASSWORD}"
 
@@ -28,8 +32,7 @@ plugins:
     allowDirectVideoIds: true
     allowDirectPlaylistIds: true
 
-    # TV is the YouTube client that supports OAuth. Keep it first so
-    # authenticated playback is attempted before unauthenticated fallbacks.
+    # Try YouTube clients first. Remote cipher helps with YouTube signature extraction.
     clients:
       - TV
       - WEB
@@ -37,17 +40,42 @@ plugins:
       - WEBEMBEDDED
       - MUSIC
 
+    remoteCipher:
+      url: "${YOUTUBE_REMOTE_CIPHER_URL:https://cipher.kikkia.dev/}"
+      userAgent: "Reso Discord music bot"
+
     # Use a burner/secondary Google account, not your primary account.
     oauth:
       enabled: true
       refreshToken: "${YOUTUBE_OAUTH_REFRESH_TOKEN:}"
       skipInitialization: ${YOUTUBE_OAUTH_SKIP_INIT:false}
 
-    # OAuth does not require a PO token. These optional values are retained
-    # for setups that intentionally use PO tokens with compatible clients.
     pot:
-      token: "${YOUTUBE_PO_TOKEN}"
-      visitorData: "${YOUTUBE_VISITOR_DATA}"
+      token: "${YOUTUBE_PO_TOKEN:}"
+      visitorData: "${YOUTUBE_VISITOR_DATA:}"
+
+  lavasrc:
+    # Spotify is metadata/search fallback. Audio is mirrored from the providers below.
+    providers:
+      - "ytsearch:%QUERY%"
+      - "scsearch:%QUERY%"
+    sources:
+      spotify: true
+      applemusic: false
+      deezer: false
+      yandexmusic: false
+      flowerytts: false
+      youtube: false
+      vkmusic: false
+      tidal: false
+      qobuz: false
+      ytdlp: false
+      jiosaavn: false
+    spotify:
+      clientId: "${SPOTIFY_CLIENT_ID:}"
+      clientSecret: "${SPOTIFY_CLIENT_SECRET:}"
+      countryCode: "${SPOTIFY_COUNTRY_CODE:IN}"
+      preferAnonymousToken: true
 
 logging:
   level:

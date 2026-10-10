@@ -1,16 +1,10 @@
-```yaml
 server:
   address: 0.0.0.0
   port: ${PORT:2333}
 
 lavalink:
-  plugins:
-    - dependency: "dev.lavalink.youtube:youtube-plugin:1.18.2"
-      repository: "https://maven.lavalink.dev/releases"
-      snapshot: false
-
   server:
-    password: "${LAVALINK_PASSWORD:youshallnotpass}"
+    password: ${LAVALINK_PASSWORD}
 
     sources:
       youtube: false
@@ -46,9 +40,4 @@ logging:
     dev.lavalink.youtube: INFO
 
   request:
-    enabled: true
-    includeClientInfo: false
-    includeHeaders: false
-    includeQueryString: false
-    includePayload: false
-```
+    enabled: false

@@ -16,7 +16,7 @@ services:
       - key: SPOTIFY_CLIENT_SECRET
         sync: false
       - key: SPOTIFY_COUNTRY_CODE
-        value: US
+        value: IN
       - key: YOUTUBE_PO_TOKEN
         sync: false
       - key: YOUTUBE_VISITOR_DATA

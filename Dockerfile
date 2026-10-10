@@ -30,4 +30,4 @@ COPY application.yml /opt/lavalink/application.yml
 
 EXPOSE 2333
 
-CMD ["sh", "-c", "exec java -Xms64m -Xmx320m -XX:MaxMetaspaceSize=96m -jar /opt/lavalink/Lavalink.jar"]
+CMD ["sh", "-c", "exec java ${JAVA_OPTS:--Xms96m -Xmx320m -XX:MaxMetaspaceSize=96m -Xss256k -XX:+UseSerialGC -XX:+ExitOnOutOfMemoryError -Djdk.tls.client.protocols=TLSv1.2,TLSv1.3 -Dfile.encoding=UTF-8} -jar /opt/lavalink/Lavalink.jar"]

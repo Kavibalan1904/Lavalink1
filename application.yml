@@ -32,12 +32,14 @@ plugins:
     allowDirectVideoIds: true
     allowDirectPlaylistIds: true
 
-    # Try YouTube clients first. Remote cipher helps with YouTube signature extraction.
+    # Prefer playback-capable clients that do not require OAuth sign-in first.
+    # TV requires sign-in; keep it last so it cannot block healthier client attempts.
+    # MUSIC is for YouTube Music search and does not provide normal playback.
     clients:
-      - TV
       - WEB
       - ANDROID_VR
       - WEBEMBEDDED
+      - TV
       - MUSIC
 
     remoteCipher:

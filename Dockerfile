@@ -27,7 +27,9 @@ RUN apk add --no-cache curl libgcc libstdc++ \
 
 COPY --from=youtube-build /build/plugin/build/libs/youtube-plugin-*.jar /opt/lavalink/plugins/youtube-plugin.jar
 COPY application.yml /opt/lavalink/application.yml
+COPY entrypoint.sh /opt/lavalink/entrypoint.sh
+RUN chmod +x /opt/lavalink/entrypoint.sh
 
 EXPOSE 2333
 
-CMD ["sh", "-c", "exec java ${JAVA_OPTS:--Xms96m -Xmx320m -XX:MaxMetaspaceSize=96m -Xss256k -XX:+UseSerialGC -XX:+ExitOnOutOfMemoryError -Djdk.tls.client.protocols=TLSv1.2,TLSv1.3 -Dfile.encoding=UTF-8} -jar /opt/lavalink/Lavalink.jar"]
+ENTRYPOINT ["/opt/lavalink/entrypoint.sh"]

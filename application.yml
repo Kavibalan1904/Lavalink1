@@ -78,7 +78,11 @@ plugins:
       clientId: "${SPOTIFY_CLIENT_ID:}"
       clientSecret: "${SPOTIFY_CLIENT_SECRET:}"
       countryCode: "${SPOTIFY_COUNTRY_CODE:IN}"
-      preferAnonymousToken: true
+      # Use the configured Spotify application credentials instead of anonymous tokens.
+      preferAnonymousToken: false
+      # Avoid the artist-details endpoint, which currently returns HTTP 403 in Render logs.
+      resolveArtistsInSearch: false
+      preferPartnerApi: false
 
 logging:
   level:

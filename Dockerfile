@@ -9,7 +9,8 @@ ARG YOUTUBE_SOURCE_COMMIT=b33460b38ad13b5cd07da75e46444397cf0ea2df
 RUN git clone https://github.com/lavalink-devs/youtube-source.git . \
     && git checkout "${YOUTUBE_SOURCE_COMMIT}" \
     && chmod +x ./gradlew \
-    && ./gradlew :plugin:jar --no-daemon
+    && sed -i 's/id("org.ajoberstar.grgit") version "5.2.0"/id("org.ajoberstar.grgit") version "5.2.1"/' build.gradle.kts \
+    && ./gradlew :plugin:jar --no-daemon --refresh-dependencies
 
 FROM eclipse-temurin:21-jre-alpine
 

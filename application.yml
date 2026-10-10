@@ -23,7 +23,7 @@ lavalink:
     bufferDurationMs: 400
     frameBufferDurationMs: 5000
     opusEncodingQuality: 10
-    trackStuckThresholdMs: 15000
+    trackStuckThresholdMs: 60000
 
 plugins:
   youtube:
@@ -87,6 +87,9 @@ plugins:
 
 logging:
   level:
+    dev.lavalink.youtube.plugin.YoutubePluginLoader: INFO
+    dev.lavalink.youtube.YoutubeSource: INFO
+    dev.lavalink.youtube.clients.skeleton.NonMusicClient: INFO
     root: INFO
     lavalink: INFO
     dev.lavalink.youtube: DEBUG

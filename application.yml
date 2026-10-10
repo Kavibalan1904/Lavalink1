@@ -58,9 +58,9 @@ plugins:
 
   lavasrc:
     # Spotify provides metadata; these providers locate a playable audio mirror.
-    # Try YouTube Music and YouTube search before SoundCloud, because SoundCloud
-    # returned no mirror for "Minnalvala (From Narivetta)".
+    # Prefer exact ISRC matching first, then broader searches as fallbacks.
     providers:
+      - "ytsearch:\"%ISRC%\""
       - "ytmsearch:%QUERY%"
       - "ytsearch:%QUERY%"
       - "scsearch:%QUERY%"

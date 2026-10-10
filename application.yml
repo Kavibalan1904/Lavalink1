@@ -5,7 +5,7 @@ server:
 
 lavalink:
   server:
-    password: "${LAVALINK_PASSWORD:youshallnotpass}"
+    password: "${LAVALINK_PASSWORD}"
 
     sources:
       youtube: false
@@ -28,16 +28,22 @@ plugins:
     allowSearch: true
     allowDirectVideoIds: true
     allowDirectPlaylistIds: true
+
     clients:
       - MUSIC
-      - ANDROID_VR
       - WEB
       - WEBEMBEDDED
+
+    pot:
+      token: "${YOUTUBE_PO_TOKEN}"
+      visitorData: "${YOUTUBE_VISITOR_DATA}"
 
 logging:
   level:
     root: INFO
     lavalink: INFO
     dev.lavalink.youtube: INFO
+    dev.lavalink.youtube.http.YoutubeOauth2Handler: INFO
+
   request:
     enabled: false

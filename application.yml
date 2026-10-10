@@ -57,10 +57,12 @@ plugins:
       visitorData: "${YOUTUBE_VISITOR_DATA:}"
 
   lavasrc:
-    # Spotify provides track metadata/search results. Because YouTube stream playback
-    # is currently unreliable, resolve Spotify tracks to playable audio via SoundCloud only.
-    # Do not put ytsearch first here, or Spotify fallback may resolve back to the broken YouTube stream.
+    # Spotify provides metadata; these providers locate a playable audio mirror.
+    # Try YouTube Music and YouTube search before SoundCloud, because SoundCloud
+    # returned no mirror for "Minnalvala (From Narivetta)".
     providers:
+      - "ytmsearch:%QUERY%"
+      - "ytsearch:%QUERY%"
       - "scsearch:%QUERY%"
     sources:
       spotify: true

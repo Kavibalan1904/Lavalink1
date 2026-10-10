@@ -32,15 +32,14 @@ plugins:
     allowDirectVideoIds: true
     allowDirectPlaylistIds: true
 
-    # OAuth is configured, so try the OAuth-capable TV playback client first.
-    # WEB and the other playback clients remain fallbacks if TV cannot load a track.
-    # MUSIC supports YouTube Music search only; it is not a playback client.
+    # Follow the upstream recommended client order. TV is last because TVHTML5
+    # streams have shown stalled playback on some cloud-hosted OAuth sessions.
     clients:
-      - TV
-      - WEB
-      - ANDROID_VR
-      - WEBEMBEDDED
       - MUSIC
+      - ANDROID_VR
+      - WEB
+      - WEBEMBEDDED
+      - TV
 
     remoteCipher:
       url: "${YOUTUBE_REMOTE_CIPHER_URL:https://cipher.kikkia.dev/}"
@@ -90,7 +89,7 @@ logging:
   level:
     root: INFO
     lavalink: INFO
-    dev.lavalink.youtube: INFO
+    dev.lavalink.youtube: DEBUG
     dev.lavalink.youtube.http.YoutubeOauth2Handler: INFO
 
   request:

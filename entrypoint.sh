@@ -12,7 +12,10 @@ echo " Included Sources: YouTube, Spotify, SoundCloud, HTTP     "
 echo " Configured for: Resobott                                 "
 echo "=========================================================="
 
-# Launch Lavalink with Spring Boot CLI overrides to guarantee binding
+# Honor Render JVM settings, with memory-safe defaults for local deployments.
+JAVA_OPTS="${JAVA_OPTS:--Xms96m -Xmx320m -XX:MaxMetaspaceSize=96m -Xss256k -XX:+UseSerialGC -XX:+ExitOnOutOfMemoryError -Djdk.tls.client.protocols=TLSv1.2,TLSv1.3 -Dfile.encoding=UTF-8}"
+
+# Launch Lavalink with Spring Boot CLI overrides to guarantee binding.
 exec java ${JAVA_OPTS} -jar /opt/lavalink/Lavalink.jar \
     --server.port="${BIND_PORT}" \
     --server.address="0.0.0.0"

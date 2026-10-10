@@ -55,9 +55,10 @@ plugins:
       visitorData: "${YOUTUBE_VISITOR_DATA:}"
 
   lavasrc:
-    # Spotify is metadata/search fallback. Audio is mirrored from the providers below.
+    # Spotify provides track metadata/search results. Because YouTube stream playback
+    # is currently unreliable, resolve Spotify tracks to playable audio via SoundCloud only.
+    # Do not put ytsearch first here, or Spotify fallback may resolve back to the broken YouTube stream.
     providers:
-      - "ytsearch:%QUERY%"
       - "scsearch:%QUERY%"
     sources:
       spotify: true

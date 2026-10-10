@@ -28,15 +28,23 @@ plugins:
     allowDirectVideoIds: true
     allowDirectPlaylistIds: true
 
-    # Try multiple YouTube client types. ANDROID_VR can sometimes play
-    # public tracks that WEB rejects; no client can bypass every restriction.
+    # Try multiple YouTube client types, but clients alone cannot resolve
+    # videos that require an authenticated YouTube session.
     clients:
       - MUSIC
       - ANDROID_VR
       - WEBEMBEDDED
 
-    # Configure valid, matching PO token and visitor data in the Render
-    # environment. Do not put these secret values in this file.
+    # Enable the supported YouTube OAuth flow for datacenter-IP challenges.
+    # Use a burner/secondary Google account, not your primary account.
+    # On first boot, leave YOUTUBE_OAUTH_REFRESH_TOKEN unset and follow the
+    # device-login instructions in the Render logs.
+    oauth:
+      enabled: true
+      refreshToken: "${YOUTUBE_OAUTH_REFRESH_TOKEN:}"
+      skipInitialization: ${YOUTUBE_OAUTH_SKIP_INIT:false}
+
+    # Optional PO token settings. OAuth does not require a PO token.
     pot:
       token: "${YOUTUBE_PO_TOKEN}"
       visitorData: "${YOUTUBE_VISITOR_DATA}"

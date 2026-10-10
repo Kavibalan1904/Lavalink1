@@ -77,7 +77,7 @@ In your **Resobott** directory, open your `.env` file and configure your Lavalin
 # Lavalink Node Configuration for Render
 LAVALINK_HOST=<your-service-name>.onrender.com
 LAVALINK_PORT=443
-LAVALINK_PASSWORD=youshallnotpass
+LAVALINK_PASSWORD=<your-long-random-secret>
 LAVALINK_SECURE=true
 ```
 

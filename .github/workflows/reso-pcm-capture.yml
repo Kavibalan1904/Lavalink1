@@ -1,0 +1,32 @@
+name: Reso PCM capture plugin
+
+on:
+  push:
+    branches:
+      - feature/reso-pcm-capture
+    paths:
+      - "reso-capture/**"
+      - ".github/workflows/reso-pcm-capture.yml"
+  pull_request:
+    paths:
+      - "reso-capture/**"
+      - ".github/workflows/reso-pcm-capture.yml"
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+      - name: Set up Gradle 8.7
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: "8.7"
+      - name: Build and run PCM capture tests
+        working-directory: reso-capture
+        run: gradle --no-daemon clean test jar

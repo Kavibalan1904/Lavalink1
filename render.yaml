@@ -21,3 +21,9 @@ services:
         sync: false
       - key: YOUTUBE_VISITOR_DATA
         sync: false
+      - key: YOUTUBE_OAUTH_REFRESH_TOKEN
+        sync: false
+      - key: YOUTUBE_OAUTH_SKIP_INIT
+        value: "false"
+      - key: YOUTUBE_REMOTE_CIPHER_URL
+        value: "https://cipher.kikkia.dev/"

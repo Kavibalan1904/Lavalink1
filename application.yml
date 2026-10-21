@@ -63,6 +63,7 @@ plugins:
     # Prefer exact ISRC matching first, then broader searches as fallbacks.
     providers:
       - "ytmsearch:\"%ISRC%\""
+      - "ytsearch:\"%ISRC%\""
       - "ytmsearch:%QUERY%"
       - "ytsearch:%QUERY%"
       - "scsearch:%QUERY%"
@@ -82,6 +83,8 @@ plugins:
       clientId: "${SPOTIFY_CLIENT_ID:}"
       clientSecret: "${SPOTIFY_CLIENT_SECRET:}"
       countryCode: "${SPOTIFY_COUNTRY_CODE:IN}"
+      playlistLoadLimit: 200
+      albumLoadLimit: 100
       # Use the configured Spotify application credentials instead of anonymous tokens.
       preferAnonymousToken: false
       # Avoid the artist-details endpoint, which currently returns HTTP 403 in Render logs.

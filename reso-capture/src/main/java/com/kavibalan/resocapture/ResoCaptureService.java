@@ -33,7 +33,7 @@ public class ResoCaptureService {
             new DaemonThreadFactory(),
             new ThreadPoolExecutor.AbortPolicy());
 
-    public SessionCreated createSession() {
+    public synchronized SessionCreated createSession() {
         purgeExpired();
         if (sessions.size() >= MAX_SESSIONS) {
             throw new SessionLimitException("Too many active Reso capture sessions");

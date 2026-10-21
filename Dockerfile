@@ -12,6 +12,12 @@ RUN git clone https://github.com/lavalink-devs/youtube-source.git . \
     && sed -i 's/id("org.ajoberstar.grgit") version "5.2.0"/id("org.ajoberstar.grgit") version "5.2.1"/' build.gradle.kts \
     && ./gradlew :plugin:jar --no-daemon --refresh-dependencies
 
+FROM gradle:8.7-jdk17-alpine AS reso-capture-build
+
+WORKDIR /build
+COPY reso-capture/ /build/
+RUN gradle --no-daemon clean test jar
+
 FROM eclipse-temurin:21-jre-alpine
 
 WORKDIR /opt/lavalink
@@ -26,6 +32,7 @@ RUN apk add --no-cache curl libgcc libstdc++ \
        -o /opt/lavalink/Lavalink.jar
 
 COPY --from=youtube-build /build/plugin/build/libs/youtube-plugin-*.jar /opt/lavalink/plugins/youtube-plugin.jar
+COPY --from=reso-capture-build /build/build/libs/reso-pcm-capture-0.1.0.jar /opt/lavalink/plugins/reso-pcm-capture.jar
 COPY application.yml /opt/lavalink/application.yml
 COPY entrypoint.sh /opt/lavalink/entrypoint.sh
 RUN chmod +x /opt/lavalink/entrypoint.sh

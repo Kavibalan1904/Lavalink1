@@ -15,6 +15,8 @@ repositories {
 dependencies {
     // Provided by Lavalink at runtime. Do not bundle a second copy of the API.
     compileOnly("dev.arbjerg.lavalink:plugin-api:4.2.2")
+    testImplementation("dev.arbjerg.lavalink:plugin-api:4.2.2")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.10.2")
 }
 
 java {
@@ -26,6 +28,10 @@ java {
 tasks.withType<JavaCompile>().configureEach {
     options.encoding = "UTF-8"
     options.release.set(17)
+}
+
+tasks.test {
+    useJUnitPlatform()
 }
 
 tasks.jar {

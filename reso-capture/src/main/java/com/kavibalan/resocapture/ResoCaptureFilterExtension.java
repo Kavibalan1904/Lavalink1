@@ -30,7 +30,7 @@ public class ResoCaptureFilterExtension implements AudioFilterExtension {
     public boolean isEnabled(JsonElement data) {
         if (!(data instanceof JsonObject)) return false;
         JsonElement enabled = ((JsonObject) data).get("enabled");
-        return enabled instanceof JsonPrimitive && ((JsonPrimitive) enabled).getBoolean();
+        return enabled instanceof JsonPrimitive && Boolean.parseBoolean(((JsonPrimitive) enabled).getContent());
     }
 
     @Override

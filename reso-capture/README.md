@@ -27,7 +27,7 @@ Set a strong random RESO_CAPTURE_API_KEY environment variable on the Lavalink se
 
 Create a session:
 
-    curl -X POST       -H "X-Reso-Capture-Key: $RESO_CAPTURE_API_KEY"       https://YOUR-LAVALINK-HOST/v1/reso-capture/sessions
+    curl -X POST -H "Authorization: $LAVALINK_PASSWORD" -H "X-Reso-Capture-Key: $RESO_CAPTURE_API_KEY" https://YOUR-LAVALINK-HOST/v1/reso-capture/sessions
 
 The response includes sessionId. Resobott then needs to send this plugin filter through the Lavalink v4 player filters operation:
 
@@ -48,11 +48,11 @@ The exact WebSocket envelope should be checked against the installed Lavalink cl
 
 Poll the spectrum:
 
-    curl -H "X-Reso-Capture-Key: $RESO_CAPTURE_API_KEY"       https://YOUR-LAVALINK-HOST/v1/reso-capture/sessions/SESSION_ID/spectrum
+    curl -H "Authorization: $LAVALINK_PASSWORD" -H "X-Reso-Capture-Key: $RESO_CAPTURE_API_KEY" https://YOUR-LAVALINK-HOST/v1/reso-capture/sessions/SESSION_ID/spectrum
 
 The response contains up to 36 measured frequency-band frames. Delete the session when capture ends:
 
-    curl -X DELETE       -H "X-Reso-Capture-Key: $RESO_CAPTURE_API_KEY"       https://YOUR-LAVALINK-HOST/v1/reso-capture/sessions/SESSION_ID
+    curl -X DELETE -H "Authorization: $LAVALINK_PASSWORD" -H "X-Reso-Capture-Key: $RESO_CAPTURE_API_KEY" https://YOUR-LAVALINK-HOST/v1/reso-capture/sessions/SESSION_ID
 
 ## Safety and validation status
 

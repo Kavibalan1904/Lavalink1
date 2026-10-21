@@ -34,7 +34,7 @@ The response includes sessionId. Resobott then needs to send this plugin filter 
     {
       "op": "filters",
       "guildId": "DISCORD_GUILD_ID",
-      "playerFilters": {
+      "filters": {
         "pluginFilters": {
           "reso-capture": {
             "enabled": true,

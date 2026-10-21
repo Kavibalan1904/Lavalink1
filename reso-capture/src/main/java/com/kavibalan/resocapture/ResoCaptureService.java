@@ -137,24 +137,24 @@ public class ResoCaptureService {
     private static float[] analyze(float[] pcm, int sampleRate) {
         double[] real = new double[FFT_SIZE];
         double[] imag = new double[FFT_SIZE];
-        int j = 0;
+        // Apply the Hann window in time order before the FFT bit-reversal permutation.
         for (int i = 0; i < FFT_SIZE; i++) {
-            if (i < j) {
-                real[i] = pcm[j];
-                real[j] = pcm[i];
-            } else {
-                real[i] = pcm[i];
-            }
+            real[i] = pcm[i] * 0.5 * (1.0 - Math.cos(2.0 * Math.PI * i / (FFT_SIZE - 1)));
+        }
+
+        int j = 0;
+        for (int i = 1; i < FFT_SIZE; i++) {
             int bit = FFT_SIZE >> 1;
             while (bit > 0 && (j & bit) != 0) {
                 j ^= bit;
                 bit >>= 1;
             }
             j ^= bit;
-        }
-
-        for (int i = 0; i < FFT_SIZE; i++) {
-            real[i] *= 0.5 * (1.0 - Math.cos(2.0 * Math.PI * i / (FFT_SIZE - 1)));
+            if (i < j) {
+                double swap = real[i];
+                real[i] = real[j];
+                real[j] = swap;
+            }
         }
 
         for (int size = 2; size <= FFT_SIZE; size <<= 1) {

@@ -11,6 +11,13 @@ logs/
 Lavalink.jar
 plugins/
 *.class
+*.zip
+
+# Gradle build cache & artifacts
+.gradle/
+build/
+reso-capture/build/
+reso-capture/.gradle/
 
 # OS and Editor junk
 .DS_Store
@@ -18,3 +25,4 @@ Thumbs.db
 .idea/
 .vscode/
 *.swp
+

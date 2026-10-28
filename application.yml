@@ -32,15 +32,17 @@ plugins:
     allowDirectVideoIds: true
     allowDirectPlaylistIds: true
 
-    # Follow upstream recommended client order. Unauthenticated mobile clients
-    # (ANDROID_MUSIC, ANDROID_TESTSUITE) trigger YouTube's "This video requires login"
-    # error on datacenter IPs. TV client is omitted due to stalled playback.
+    # Follow the upstream recommended client order. TV is last because TVHTML5
+    # streams have shown stalled playback on some cloud-hosted OAuth sessions.
     clients:
       - MUSIC
-      - WEB
-      - ANDROID_VR
-      - WEBEMBEDDED
+      - ANDROID_TESTSUITE
+      - ANDROID_MUSIC
       - TVHTML5EMBEDDED
+      - ANDROID_VR
+      - WEB
+      - WEBEMBEDDED
+      - TV
 
     remoteCipher:
       url: "${YOUTUBE_REMOTE_CIPHER_URL:https://cipher.kikkia.dev/}"

@@ -13,20 +13,20 @@ lavalink:
   server:
     password: "${LAVALINK_PASSWORD:Reso-d4e25d63@Reso}"
 
-    sources:
+        sources:
       youtube: false
       soundcloud: true
-      bandcamp: true
-      twitch: true
-      vimeo: true
-      nico: true
+      bandcamp: false
+      twitch: false
+      vimeo: false
+      nico: false
       http: true
       local: false
 
-    bufferDurationMs: 400
-    frameBufferDurationMs: 5000
+    bufferDurationMs: 300
+    frameBufferDurationMs: 1500
     opusEncodingQuality: 10
-    trackStuckThresholdMs: 60000
+    trackStuckThresholdMs: 30000
 
 plugins:
   youtube:

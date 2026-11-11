@@ -11,7 +11,7 @@ lavalink:
       repository: "https://maven.lavalink.dev/releases"
 
   server:
-    password: "${LAVALINK_PASSWORD:d4e25d63@Reso}"
+    password: "${LAVALINK_PASSWORD:Reso-d4e25d63@Reso}"
 
     sources:
       youtube: false
@@ -50,7 +50,8 @@ plugins:
     # YouTube OAuth2 Authentication to bypass datacenter IP login requirements
     oauth:
       enabled: true
-      skipInitialization: false
+      refreshToken: "${YOUTUBE_OAUTH_REFRESH_TOKEN:1//0gG2kZ4cZlQrpCgYIARAAGBASNwF-L9Iro2FLt4HvNWNUP0KJFX-coy9Xs9It7u8Ux6KbWYifdSgkz0tyIxBIpE891SrX4iQ7gP4}"
+      skipInitialization: true
 
     pot:
       token: "${YOUTUBE_PO_TOKEN:MlVFZRCWPwJhCkVb2kNcEFO5m8QSC5hbSRi0MK5QyJvpMLjKA_98bpXDljbemuyQZarOQmnBPYN8drGXG7ryQ0Dfgmv57yTROtMc8bvP8aoQdlFiUzOM}"

@@ -54,8 +54,8 @@ plugins:
       skipInitialization: ${YOUTUBE_OAUTH_SKIP_INIT:true}
 
     pot:
-      token: "${YOUTUBE_PO_TOKEN:}"
-      visitorData: "${YOUTUBE_VISITOR_DATA:}"
+      token: "${YOUTUBE_PO_TOKEN:MlVFZRCWPwJhCkVb2kNcEFO5m8QSC5hbSRi0MK5QyJvpMLjKA_98bpXDljbemuyQZarOQmnBPYN8drGXG7ryQ0Dfgmv57yTROtMc8bvP8aoQdlFiUzOM}"
+      visitorData: "${YOUTUBE_VISITOR_DATA:Cgt5T2dOdjh2R3czdyjIq6fWBjIKCgJJThIEGgAgNmKzAgqwAkN1RUJDQVVTa3dFQjhRWnVacFU1aE40Wldob0VhOWZwMlBfRkVoNTlhWXlkLW1uMEN4eXVFMnpvZ3ZjZVFDTGdWWDZOYzMyeFJud2NkYl9hQk93YmVnOGZER2ZuNDdEQk9qMnY2QnJ3SXpEX1g2OVNad2JhTENpQVlCTEVvR21IZS1JZ05UNkR6TVdWVTNhZVFZbkNVNVlVUHJ0aXVCZ2tEbVdMRzF0RmFDYmNJckFKb1d1emR3STl2ZmEySjdqY1JSY3pqMElETUlDcGlPc29CVEpGQWQ2cG5VX2p2b0VVZlNHTkh2ZmFDNmVrSVJCeHNBdHRuREREWE54VnVXOHd5ZWZWSFcxbzJHcEE4c0p2VjVHa0gxMllfRXJBLXlYVWVrV19KZWZvSDRPQWhMOE0%3D%3D}"
 
   lavasrc:
     # Spotify provides metadata; these providers locate a playable audio mirror.
@@ -79,8 +79,8 @@ plugins:
       ytdlp: false
       jiosaavn: false
     spotify:
-      clientId: "${SPOTIFY_CLIENT_ID:}"
-      clientSecret: "${SPOTIFY_CLIENT_SECRET:}"
+      clientId: "${SPOTIFY_CLIENT_ID:7452cb4590f647a2b5dbb0baebe946b5}"
+      clientSecret: "${SPOTIFY_CLIENT_SECRET:1432609f561d4e14acad012c3b22d9e2}"
       countryCode: "${SPOTIFY_COUNTRY_CODE:IN}"
       playlistLoadLimit: 200
       albumLoadLimit: 100

@@ -4,8 +4,9 @@ server:
 
 lavalink:
   plugins:
-    - dependency: "dev.lavalink.youtube:youtube-plugin:1.18.2"
-      repository: "https://maven.lavalink.dev/releases"
+    - dependency: "dev.lavalink.youtube:youtube-plugin:b33460b38ad13b5cd07da75e46444397cf0ea2df"
+      repository: "https://maven.lavalink.dev/snapshots"
+      snapshot: true
     - dependency: "com.github.topi314.lavasrc:lavasrc-plugin:4.8.3"
       repository: "https://maven.lavalink.dev/releases"
 
@@ -36,12 +37,11 @@ plugins:
 
     # Follow the upstream recommended client order. TV is last because TVHTML5
     # streams have shown stalled playback on some cloud-hosted OAuth sessions.
+    # Prioritize TV client for OAuth playback, then MUSIC and WEB fallbacks
     clients:
-      - MUSIC
-      - ANDROID_VR
-      - WEB
-      - WEBEMBEDDED
       - TV
+      - MUSIC
+      - WEB
 
     remoteCipher:
       url: "${YOUTUBE_REMOTE_CIPHER_URL:https://cipher.kikkia.dev/}"

@@ -47,11 +47,10 @@ plugins:
       url: "${YOUTUBE_REMOTE_CIPHER_URL:https://cipher.kikkia.dev/}"
       userAgent: "Reso Discord music bot"
 
-    # Set to true only after generating a valid YouTube OAuth refresh token
+    # YouTube OAuth2 Authentication to bypass datacenter IP login requirements
     oauth:
-      enabled: false
-      refreshToken: "${YOUTUBE_OAUTH_REFRESH_TOKEN:}"
-      skipInitialization: ${YOUTUBE_OAUTH_SKIP_INIT:true}
+      enabled: true
+      skipInitialization: false
 
     pot:
       token: "${YOUTUBE_PO_TOKEN:MlVFZRCWPwJhCkVb2kNcEFO5m8QSC5hbSRi0MK5QyJvpMLjKA_98bpXDljbemuyQZarOQmnBPYN8drGXG7ryQ0Dfgmv57yTROtMc8bvP8aoQdlFiUzOM}"
